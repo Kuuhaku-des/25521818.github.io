@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio Pro</title>
+
+<style>
+:root {
+    --accent: #38bdf8;
+    --bg1: #0ea5e9;
+    --bg2: #020617;
+    --text: white;
+}
+
+body.light {
+    --bg1: #e0f2fe;
+    --bg2: #ffffff;
+    --text: #0f172a;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at 30% 30%, var(--bg1), var(--bg2) 70%);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(12px);
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px;
+    z-index: 1000;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    opacity: 0.7;
+}
+.navbar a:hover {
+    opacity: 1;
+    color: var(--accent);
+}
+
+/* Toggle */
+.toggle-btn {
+    position: fixed;
+    right: 20px;
+    top: 15px;
+    z-index: 1100;
+    background: var(--accent);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* ===== BACKGROUND ===== */
+.bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+.grid {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* ===== HERO ===== */
+.scene {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    perspective: 1200px;
+}
+
+.rig {
+    position: absolute;
+    top: 12px;
+    transform-origin: top center;
+}
+
+.rope {
+    width: 6px;
+    height: 140px;
+    margin: auto;
+    border-radius: 10px;
+    background: repeating-linear-gradient(45deg,#38bdf8,#38bdf8 4px,#0ea5e9 4px,#0ea5e9 8px);
+}
+
+.connector {
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    background: #94a3b8;
+    border-radius: 50%;
+}
+
+.wrapper {
+    margin-top: 10px;
+    transform-style: preserve-3d;
+    cursor: grab;
+}
+
+/* CARD */
+.card {
+    width: 320px;
+    height: 400px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.wrapper.flip .card {
+    transform: rotateY(180deg);
+}
+
+.face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(20px);
+    background: rgba(30,41,59,0.6);
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px;
+    backface-visibility: hidden;
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+.avatar {
+    width: 140px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+}
+
+/* ===== CONTENT ===== */
+.spacer { height: 100vh; }
+
+.section {
+    max-width: 900px;
+    margin: auto;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.section h2 {
+    color: var(--accent);
+}
+
+.card-box {
+    background: rgba(255,255,255,0.08);
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 12px;
+}
+
+/* hover */
+.card-box:hover {
+    transform: translateY(-6px);
+    transition: 0.3s;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <a href="#about">Giới thiệu</a>
+    <a href="#skills">Kỹ năng</a>
+    <a href="#projects">Dự án</a>
+    <a href="#contact">Liên hệ</a>
+</div>
+
+<button class="toggle-btn" onclick="toggleMode()">🌙</button>
+
+<div class="bg">
+    <div class="grid"></div>
+</div>
+
+<!-- HERO -->
+<div class="scene">
+    <div class="rig" id="rig">
+        <div class="rope"></div>
+        <div class="connector"></div>
+
+        <div class="wrapper" id="wrapper">
+            <div class="card">
+
+                <!-- FRONT -->
+                <div class="face">
+                    <img src="avatar.jpg" class="avatar">
+                    <h2>NGUYỄN HÒA THUẬN</h2>
+                    <p>Cybersecurity</p>
+		<p>University of Information Technology<p>
+                </div>
+
+                <!-- BACK -->
+                <div class="face back">
+                    <h3>Scan Me</h3>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://www.facebook.com/thuan.nguyen.922011/">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="spacer"></div>
+
+<!-- CONTENT -->
+<div id="about" class="section">
+    <h2>Giới thiệu</h2>
+    <p>Mình là NGUYỄN HÒA THUẬN, sinh viên đam mê công nghệ, đặc biệt trong lĩnh vực lập trình, AI và robotics. 
+Mình từng đạt nhiều thành tích nổi bật trong các cuộc thi khoa học kỹ thuật và sáng tạo cấp tỉnh, quốc gia, 
+đồng thời không ngừng học hỏi để phát triển bản thân và tạo ra những sản phẩm có giá trị thực tiễn.</p> 
+</div>
+
+<div id="skills" class="section">
+    <h2>Kỹ năng</h2>
+    <div class="card-box">HTML / CSS / JavaScript / React / C++ / Python/ C</div>
+</div>
+
+<div id="achievements" class="section">
+    <h2>Thành tựu</h2>
+    <div class="card-box">Thanh niên tiêu biểu trong sáng tạo khoa học kỹ thuật do Ủy ban hội Liên hiệp thanh niên Việt Nam thành phố Vĩnh Long tuyên dương
+Bằng khen có công trình, giải pháp, sản phẩm sáng tạo, sáng kiến tiêu biểu toàn quốc năm 2024 do Ban chấp hành Trung ương Đoàn Thanh niên Cộng sản Hồ Chí Minh trao tặng
+Tham dự cuộc thi khoa học kỹ thuật cấp quốc gia học sinh trung học năm học 2023-2024
+Giải nhất Hội thi Khoa học, kỹ thuật cấp tỉnh dành cho học sinh trung học năm học 2023-2024
+Giải nhì Cuộc thi sáng tạo Thanh thiếu niên nhi đồng lần thứ XII, năm học 2022-2023
+Giải ba Cuộc thi sáng tạo Thanh thiếu niên nhi đồng lần thứ XIII, năm học 2023-2024
+ Giải Ba và giải "Inspire Award" cuộc thi Vietnam Open Robotics Challenge 2023, đại điện khu vực Đồng bằng sông Cửu Long tham dự cuộc thi FIRST Tech Challenge Vietnam 2023-2024 toàn quốc.
+Liên minh Quán quân vòng khu vực và Liên minh Quý Quân vòng chung kết toàn quốc cuộc thi FPTU AI & Robotics Challenge 2025.</div>
+</div>
+
+<div id="contact" class="section">
+    <h2>Liên hệ</h2>
+    <div class="card-box">Email: 25521818@gm.uit.edu.vn</div>
+</div>
+
+<script>
+// DARK MODE
+function toggleMode() {
+    document.body.classList.toggle("light");
+}
+
+// ===== 3D + PHYSICS =====
+const rig = document.getElementById("rig");
+const wrapper = document.getElementById("wrapper");
+
+wrapper.onclick = () => wrapper.classList.toggle("flip");
+
+let targetX = 0, targetY = 0;
+let currentX = 0, currentY = 0;
+
+// mouse 3D
+document.addEventListener("mousemove", e => {
+    targetX = (e.clientX - window.innerWidth/2) / 25;
+    targetY = (e.clientY - window.innerHeight/2) / 25;
+});
+
+// physics
+let angle = 0;
+let velocity = 0;
+let gravity = 0.002;
+let damping = 0.995;
+
+// drag
+let dragging = false;
+
+wrapper.addEventListener("mousedown", () => dragging = true);
+document.addEventListener("mouseup", () => dragging = false);
+
+document.addEventListener("mousemove", e => {
+    if (dragging) {
+        angle = (e.clientX - window.innerWidth/2) / 300;
+    }
+});
+
+function animate() {
+
+    if (!dragging) {
+        velocity += -gravity * Math.sin(angle);
+        velocity *= damping;
+        angle += velocity;
+    }
+
+    currentX += (targetX - currentX) * 0.1;
+    currentY += (targetY - currentY) * 0.1;
+
+    rig.style.transform = `
+        rotateZ(${angle}rad)
+        rotateX(${currentY}deg)
+        rotateY(${currentX}deg)
+    `;
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
